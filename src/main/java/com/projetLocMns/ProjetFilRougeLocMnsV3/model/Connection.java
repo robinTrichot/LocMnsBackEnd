@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-
 
 @Entity
 @Getter

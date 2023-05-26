@@ -26,6 +26,8 @@ public class JwtUtils {
         data.put("lastname", myUserDetails.getUsager().getLastname());
         data.put("firstname", myUserDetails.getUsager().getFirstname());
         data.put("nomImageProfil", myUserDetails.getUsager().getNomImageProfil());
+        data.put("idTest", myUserDetails.getUsager().getId());
+
 
 
         return Jwts.builder()

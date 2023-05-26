@@ -11,10 +11,6 @@ public interface CopyDao extends JpaRepository<Copy, Integer> {
     @Query("SELECT COUNT(c) FROM Copy as c JOIN c.material as m WHERE c.status = 'free' ")
     List<Object[]> findByStatus();
 
-
-    //    Select * from copy c
-//    inner join material m on c.material = m.id
-//    where m.wording = "wording";
     @Query("FROM Copy c JOIN c.material m ON m.id = c.material.id WHERE m.wording = :wording")
     List<Copy> findByWording(@Param("wording") String wording);
 

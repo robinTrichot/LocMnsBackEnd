@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class ConnexionController {
 
-    // j'ai rajouté ce commentaire rassurant
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -49,7 +48,6 @@ public class ConnexionController {
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
         return new ResponseEntity<>(jwtUtils.generateJwt(myUserDetails), HttpStatus.OK);
     }
 }

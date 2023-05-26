@@ -4,17 +4,20 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 import com.fasterxml.jackson.annotation.*;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewMaterial;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Getter
 @Setter
-
 public class Copy {
 
     @JsonView(ViewCopy.class)
@@ -39,21 +42,17 @@ public class Copy {
     @JsonView(ViewCopy.class)
     private String serialNumber;
 
-
-    @JsonView({ViewCopy.class, ViewHire.class})
-
     @ManyToOne
     @JoinColumn(name = "material")
     private Material material;
 
-
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "features")
     private Features features;
 
-
-//    @OneToMany(mappedBy = "copy")
-//    private Set<Hire> hires;
+    @JsonIgnore
+    @OneToMany(mappedBy = "copy")
+    private List<Hire> hires = new ArrayList<>();
 
 }

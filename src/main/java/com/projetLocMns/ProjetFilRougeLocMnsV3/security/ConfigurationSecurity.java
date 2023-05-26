@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+
 import javax.sql.DataSource;
 import java.util.Arrays;
 
@@ -40,14 +41,14 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
                     corsConfiguration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "DELETE", "PUT", "PATCH"));
                     corsConfiguration.setAllowedHeaders(
                             Arrays.asList("X-Requested-With", "Origin", "Content-Type",
-                                    "Accept", "Authorization","Access-Control-Allow-Origin"));
+                                    "Accept", "Authorization", "Access-Control-Allow-Origin"));
                     return corsConfiguration;
                 }).and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN") // toujours mettre en majuscule
-                .antMatchers( "/connexion", "/usagers", "/usager/{id}", "/image-profil/{idUtilisateur}", "/TypeUsagers", "/copies", "/materials", "/copiesDispo", "/commande", "/material/{wording}", "/material/id/{id}").permitAll()
-                .antMatchers( "/**").hasAnyRole("ADMIN", "USER") // toujours mettre en majuscule
+                .antMatchers("/connexion", "/usagers", "/usager/{id}", "/image-profil/{idUtilisateur}", "/TypeUsagers", "/copies", "/materials", "/copiesDispo", "/commande", "/material/{wording}", "/material/id/{id}", "/copie/{id}", "EventHire", "/HireUser/{idUser}", "/ChangeStatusCopy").permitAll()
+                .antMatchers("/**").hasAnyRole("ADMIN", "USER") // toujours mettre en majuscule
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

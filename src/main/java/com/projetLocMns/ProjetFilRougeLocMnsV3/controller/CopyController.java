@@ -4,14 +4,18 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Hire;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.model.User;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -24,6 +28,20 @@ public class CopyController {
     public List<Copy> getCopy() {
         List copies = copyDao.findAll();
         return copies;
+    }
+
+    @GetMapping("/copie/{id}")
+    public ResponseEntity<Copy> getCopy(@PathVariable int id) {
+
+        //return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        Optional<Copy> optional = copyDao.findById(id);
+
+        if (optional.isPresent()) {
+            return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/copiesDispo")
@@ -48,5 +66,40 @@ public class CopyController {
     public List<Copy> trouverExemplairesParMaterielId(@PathVariable Integer id) {
         return copyDao.findCopyByMaterialId(id);
     }
+
+    @PostMapping("/ChangeStatusCopy")
+    public ResponseEntity<Copy> changeStatusCopy(@RequestBody Copy copy) {
+
+        if (copy.getId() != null) {
+
+            Optional<Copy> optional = copyDao.findById(copy.getId());
+
+            if (optional.isPresent()) {
+                Copy copyToUpdate = optional.get();
+                copyToUpdate.setDateOutOfStock(copy.getDateOutOfStock());
+                copyToUpdate.setDatePurchase(copy.getDatePurchase());
+                copyToUpdate.setOutOfStock(copy.getOutOfStock());
+                copyToUpdate.setSerialNumber(copy.getSerialNumber());
+                copyToUpdate.setFeatures(copy.getFeatures());
+                copyToUpdate.setMaterial(copy.getMaterial());
+
+                if (Objects.equals(copy.getStatus(), "hired")) {
+                    copyToUpdate.setStatus("free");
+                } else if (Objects.equals(copy.getStatus(), "free")) {
+                    copyToUpdate.setStatus("hired");
+                }
+
+
+                copyDao.save(copyToUpdate);
+
+                return new ResponseEntity<>(copy, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        copyDao.save(copy);
+        return new ResponseEntity<>(copy, HttpStatus.OK);
+    }
+
 
 }
