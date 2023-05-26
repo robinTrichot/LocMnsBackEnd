@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class ConnexionController {
 
+    // j'ai rajouté ce commentaire rassurant
     @Autowired
     AuthenticationManager authenticationManager;
 
