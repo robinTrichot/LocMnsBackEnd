@@ -46,7 +46,7 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN") // toujours mettre en majuscule
-                .antMatchers( "/connexion", "/usagers", "/usager/{id}", "/image-profil/{idUtilisateur}", "/TypeUsagers", "/copies", "/materials", "/copiesDispo", "/commande", "/material/{wording}", "/material/id/{id}").permitAll()
+                .antMatchers( "/connexion", "/usagers", "/usager/{id}", "/image-profil/{idUtilisateur}", "/TypeUsagers", "/copies", "/materials", "/copiesDispo", "/commande", "/material/{wording}", "/material/id/{id}", "/picture-material/{idMaterial}", "/materialById/{id}").permitAll()
                 .antMatchers( "/**").hasAnyRole("ADMIN", "USER") // toujours mettre en majuscule
                 .anyRequest().authenticated()
                 .and().exceptionHandling()

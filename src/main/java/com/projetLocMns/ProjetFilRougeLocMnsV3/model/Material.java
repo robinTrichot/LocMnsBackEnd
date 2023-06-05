@@ -1,9 +1,6 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewMaterial;
@@ -44,17 +41,10 @@ public class Material {
     )
     private Set<Notice> notices = new HashSet<>();
 
-    // cette mofidication = changement de la features vers la table copy en liaison (à voir bansept)
-//    @ManyToOne
-//    @JoinColumn(name = "features")
-//    private Features features;
-
-
     @JsonView(ViewMaterial.class)
     @ManyToOne
     @JoinColumn(name = "trademark")
     private TrademarkMaterial trademarkMaterial;
-
 
     @JsonView(ViewMaterial.class)
     @ManyToOne
@@ -62,8 +52,11 @@ public class Material {
     private Structure structure;
 
 
+// ça merde ici, à changer
+    // àa conftionne avec un jsonBack reference
 
-    @JsonView(ViewMaterial.class)
-    @OneToMany(mappedBy = "material")
+    @JsonIgnore
+    // @JsonView(ViewMaterial.class)
+    @OneToMany( mappedBy = "material")
     private List<Copy> copies = new ArrayList<>();
 }

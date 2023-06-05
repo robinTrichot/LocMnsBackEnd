@@ -17,10 +17,7 @@ public class EventHire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String title;
-    private String summary;
-    private String picture;
-    private String observations;
+    private String nameEvent;
 
 
 }

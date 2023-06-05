@@ -28,8 +28,10 @@ INSERT INTO notice (doc)
 VALUES ("un pc assez fragile, faites, attention ! ");
 
 
-INSERT INTO event_hire (title, summary, picture, observations)
-VALUES ("Simple commande", "location", "loc.png", "aucune");
+INSERT INTO event_hire (name_event)
+VALUES ("MNS_Ifa"),
+       ("Arènes de Metz"),
+       ("Ifa Buisness School Metz");
 
 
 INSERT INTO material (wording, picture, trademark, structure)
