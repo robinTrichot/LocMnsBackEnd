@@ -49,7 +49,6 @@ public class ConnexionController {
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
         return new ResponseEntity<>(jwtUtils.generateJwt(myUserDetails), HttpStatus.OK);
     }
 }

@@ -22,7 +22,7 @@ public class User {
     private Integer id;
     @JsonView(ViewUser.class)
     private String login;
-    @JsonView(ViewUser.class)
+
     private String password;
 
     @JsonView(ViewUser.class)
@@ -68,4 +68,10 @@ public class User {
     )
     private Set<Structure> structures = new HashSet<>();
 
+
+    // à modifier ? tà reprendre tout de suite !
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Hire> hires;
 }

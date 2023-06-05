@@ -4,6 +4,7 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewFeatures;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,9 @@ public class Features {
     private String wording;
 
 
+    @JsonView(ViewFeatures.class)
+  //  @JsonBackReference
     @OneToMany(mappedBy = "features")
     private List<Copy> copies = new ArrayList<>();
+
 }

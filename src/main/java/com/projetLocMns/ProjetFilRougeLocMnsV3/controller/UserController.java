@@ -49,20 +49,16 @@ public class UserController {
     public ResponseEntity<User> getUtilisateur(@PathVariable int id) {
 
         //return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         Optional<User> optional = userDao.findById(id);
-
         if (optional.isPresent()) {
             return new ResponseEntity<>(optional.get(), HttpStatus.OK);
         }
-
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
     @PostMapping("/admin/addUsager")
     public ResponseEntity<User> addUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
-
         //si l'utilisateur fournit possède un id
         if (newUser.getId() != null) {
 

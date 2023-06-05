@@ -28,8 +28,10 @@ INSERT INTO notice (doc)
 VALUES ("un pc assez fragile, faites, attention ! ");
 
 
-INSERT INTO event_hire (title, summary, picture, observations)
-VALUES ("Simple commande", "location", "loc.png", "aucune");
+INSERT INTO event_hire (name_event)
+VALUES ("MNS_Ifa"),
+       ("Arènes de Metz"),
+       ("Ifa Buisness School Metz");
 
 
 INSERT INTO material (wording, picture, trademark, structure)
@@ -65,22 +67,22 @@ VALUES ('1993-05-20', 'free', '1454-12-12', '1457-12-15', '14071789', 1, 1),
        ('1993-05-20', 'hired', '1454-12-12', '1457-12-15', '14071789', 1, 1),
        ('1993-05-20', 'free', '1454-12-12', '1457-12-15', '14071789', 1, 1),
 
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "22558888", 2, 2),
+       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "22558888", 2, 2),
        ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 2, 2),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "054545", 2, 3),
+       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "054545", 2, 3),
        ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "24545", 2, 4),
        ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "22558888", 2, 2),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "56954", 2, 3),
+       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 2, 3),
        ('1993-05-20', "free", '1454-12-12', '1457-12-15', "054545", 2, 4),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "24545", 2, 2),
+       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "24545", 2, 2),
 
        ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 3, 1),
        ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "054545", 3, 1),
        ('1993-05-20', "free", '1454-12-12', '1457-12-15', "24545", 3, 1);
 
-INSERT INTO hire (date_hire, date_real_return, date_planned_return, status, id_location, id_user, id_copy)
-VALUES ('1993-05-20', '1993-05-20', '1993-05-20', "rouleMaPoule", 1, 1, 1),
-       ('1977-05-20', '1893-05-20', '1000-00-01', "2emeEssai", 1, 2, 4);
+INSERT INTO hire (date_hire, date_real_return, date_planned_return, status, id_location, id_user, copy)
+VALUES ('1993-05-20', '1993-05-20', '1993-05-20', "en cours", 1, 1, 1),
+       ('1977-05-20', '1893-05-20', '1000-05-01', "en cours", 2, 2, 4);
 
 INSERT INTO owns_material_notice (material_id, notice_id)
 VALUES (1, 1);
