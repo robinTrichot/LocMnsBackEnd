@@ -12,19 +12,15 @@ import java.time.LocalDate;
 @Setter
 public class Connection {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
 
     private boolean status;
 
     private LocalDate dateConnection;
 
     private LocalDate dateLogout;
-
 
     @ManyToOne
     @JsonView(ViewUser.class)
