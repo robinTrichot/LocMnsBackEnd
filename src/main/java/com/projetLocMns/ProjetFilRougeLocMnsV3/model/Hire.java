@@ -3,9 +3,7 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

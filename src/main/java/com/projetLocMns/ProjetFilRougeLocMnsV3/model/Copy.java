@@ -3,16 +3,12 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewMaterial;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -31,10 +27,8 @@ public class Copy {
     @JsonView(ViewCopy.class)
     private String status;
 
-
     @JsonView(ViewCopy.class)
-    private String outOfStock;
-
+    private Boolean inStock;
 
     @JsonView(ViewCopy.class)
     private LocalDate dateOutOfStock;

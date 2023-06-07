@@ -4,15 +4,11 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Hire;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.User;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,8 +28,6 @@ public class CopyController {
 
     @GetMapping("/copie/{id}")
     public ResponseEntity<Copy> getCopy(@PathVariable int id) {
-
-        //return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
         Optional<Copy> optional = copyDao.findById(id);
 
@@ -67,7 +61,7 @@ public class CopyController {
         return copyDao.findCopyByMaterialId(id);
     }
 
-    @PostMapping("/ChangeStatusCopy")
+    @PostMapping("/change/copy")
     public ResponseEntity<Copy> changeStatusCopy(@RequestBody Copy copy) {
 
         if (copy.getId() != null) {
@@ -78,7 +72,7 @@ public class CopyController {
                 Copy copyToUpdate = optional.get();
                 copyToUpdate.setDateOutOfStock(copy.getDateOutOfStock());
                 copyToUpdate.setDatePurchase(copy.getDatePurchase());
-                copyToUpdate.setOutOfStock(copy.getOutOfStock());
+                copyToUpdate.setInStock(copy.getInStock());
                 copyToUpdate.setSerialNumber(copy.getSerialNumber());
                 copyToUpdate.setFeatures(copy.getFeatures());
                 copyToUpdate.setMaterial(copy.getMaterial());
@@ -89,17 +83,12 @@ public class CopyController {
                     copyToUpdate.setStatus("hired");
                 }
 
-
                 copyDao.save(copyToUpdate);
-
                 return new ResponseEntity<>(copy, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         copyDao.save(copy);
         return new ResponseEntity<>(copy, HttpStatus.OK);
     }
-
-
 }
