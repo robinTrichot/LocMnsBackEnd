@@ -25,7 +25,6 @@ public class Features {
 
 
     @JsonView(ViewFeatures.class)
-  //  @JsonBackReference
     @OneToMany(mappedBy = "features")
     private List<Copy> copies = new ArrayList<>();
 
