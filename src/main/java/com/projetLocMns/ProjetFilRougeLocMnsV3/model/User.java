@@ -59,7 +59,6 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Connection> connections;
 
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -67,9 +66,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "structure_id")
     )
     private Set<Structure> structures = new HashSet<>();
-
-
-    // à modifier ? tà reprendre tout de suite !
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")

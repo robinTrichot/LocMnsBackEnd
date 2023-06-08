@@ -2,7 +2,6 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.UserDao;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.TypeUsager;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.User;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.services.FileService;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
@@ -79,7 +78,7 @@ public class UserController {
                 userToUpdate.setNameStreet(newUser.getNameStreet());
                 userToUpdate.setPostalCode(newUser.getPostalCode());
                 userToUpdate.setCity(newUser.getCity());
-                userToUpdate.setRole(optional.get().getRole());
+                userToUpdate.setRole(newUser.getRole());
 
                 userDao.save(userToUpdate);
 
@@ -95,10 +94,6 @@ public class UserController {
             //si il y a eu une tentative d'insertion d'un utilisateur avec un id qui n'existait pas
             return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
         }
-
-        TypeUsager role = new TypeUsager();
-        role.setId(2);
-        newUser.setRole(role);
 
         String passwordHache = passwordEncoder.encode("root");
         newUser.setPassword(passwordHache);

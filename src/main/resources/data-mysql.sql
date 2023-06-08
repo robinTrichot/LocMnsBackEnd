@@ -24,9 +24,6 @@ VALUES ("20Mhertz, 8 core, lol"),
        ("32gb"),
        ("6gb");
 
-INSERT INTO notice (doc)
-VALUES ("un pc assez fragile, faites, attention ! ");
-
 
 INSERT INTO event_hire (name_event)
 VALUES ("MNS_Ifa"),
@@ -34,10 +31,10 @@ VALUES ("MNS_Ifa"),
        ("Ifa Buisness School Metz");
 
 
-INSERT INTO material (wording, picture, trademark, structure)
-VALUES ("pc_asus", "asus1.png", 1, 1),
-       ("cle_usb", "usb.png", 2, 1),
-       ("ecran_fixe", "ecran.png", 3, 1);
+INSERT INTO material (wording, picture, trademark, structure, notice)
+VALUES ("pc_asus", "asus1.png", 1, 1, "document.pdf"),
+       ("cle_usb", "usb.png", 2, 1, "document.pdf"),
+       ("ecran_fixe", "ecran.png", 3, 1, "document.pdf");
 
 INSERT INTO user(login, password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
                  postal_code, city, role)
@@ -61,31 +58,30 @@ VALUES ("Franck57", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY
 INSERT INTO connection (`status`, date_connection, date_logout, id_user)
 VALUES (true, '1993-05-20', '1993-05-20', 1);
 
-INSERT INTO copy (date_purchase, status, out_of_stock, date_out_of_stock, serial_number, material, features)
-VALUES ('1993-05-20', 'free', '1454-12-12', '1457-12-15', '14071789', 1, 1),
-       ('1993-05-20', 'free', '1454-12-12', '1457-12-15', '14071789', 1, 1),
-       ('1993-05-20', 'hired', '1454-12-12', '1457-12-15', '14071789', 1, 1),
-       ('1993-05-20', 'free', '1454-12-12', '1457-12-15', '14071789', 1, 1),
+INSERT INTO copy (date_purchase, status, in_Stock, date_out_of_stock, serial_number, material, features)
+VALUES ('1993-05-20', 'free', true, '1457-12-15', '14071789', 1, 1),
+       ('1993-05-20', 'free', true, '1457-12-15', '14071789', 1, 1),
+       ('1993-05-20', 'hired', true, '1457-12-15', '14071789', 1, 1),
+       ('1993-05-20', 'free', true, '1457-12-15', '14071789', 1, 1),
 
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "22558888", 2, 2),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 2, 2),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "054545", 2, 3),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "24545", 2, 4),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "22558888", 2, 2),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 2, 3),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "054545", 2, 4),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "24545", 2, 2),
+       ('1993-05-20', "hired", true, '1457-12-15', "22558888", 2, 2),
+       ('1993-05-20', "free", true, '1457-12-15', "56954", 2, 2),
+       ('1993-05-20', "free", true, '1457-12-15', "054545", 2, 3),
+       ('1993-05-20', "hired", true, '1457-12-15', "24545", 2, 4),
+       ('1993-05-20', "hired", true, '1457-12-15', "22558888", 2, 2),
+       ('1993-05-20', "free", true, '1457-12-15', "56954", 2, 3),
+       ('1993-05-20', "free", true, '1457-12-15', "054545", 2, 4),
+       ('1993-05-20', "hired", true, '1457-12-15', "24545", 2, 2),
 
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "56954", 3, 1),
-       ('1993-05-20', "hired", '1454-12-12', '1457-12-15', "054545", 3, 1),
-       ('1993-05-20', "free", '1454-12-12', '1457-12-15', "24545", 3, 1);
+       ('1993-05-20', "free", true, '1457-12-15', "56954", 3, 1),
+       ('1993-05-20', "hired", true, '1457-12-15', "054545", 3, 1),
+       ('1993-05-20', "free", true, '1457-12-15', "24545", 3, 1);
 
 INSERT INTO hire (date_hire, date_real_return, date_planned_return, status, id_location, id_user, copy)
 VALUES ('1993-05-20', '1993-05-20', '1993-05-20', "en cours", 1, 1, 1),
        ('1977-05-20', '1893-05-20', '1000-05-01', "en cours", 2, 2, 4);
 
-INSERT INTO owns_material_notice (material_id, notice_id)
-VALUES (1, 1);
+
 
 INSERT INTO belongs_user_structure (user_id, structure_id)
 VALUES (1, 1);
