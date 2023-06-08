@@ -1,6 +1,7 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewFeatures;
@@ -16,6 +17,7 @@ import java.util.List;
 public class Features {
 
 
+    @JsonView(ViewFeatures.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,8 +26,11 @@ public class Features {
     private String wording;
 
 
-    @JsonView(ViewFeatures.class)
+    // a jouter pour éviter le nullable
+    @JsonIgnore
     @OneToMany(mappedBy = "features")
     private List<Copy> copies = new ArrayList<>();
+
+
 
 }
