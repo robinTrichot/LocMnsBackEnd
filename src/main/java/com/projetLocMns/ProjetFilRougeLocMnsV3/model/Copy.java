@@ -40,10 +40,12 @@ public class Copy {
     @JoinColumn(name = "material")
     private Material material;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "features")
     private Features features;
+
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "copy")
