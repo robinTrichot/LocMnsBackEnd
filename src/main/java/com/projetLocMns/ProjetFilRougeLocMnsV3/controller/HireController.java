@@ -1,11 +1,13 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.HireDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.UserDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Hire;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -99,6 +101,17 @@ public class HireController {
         }
         hireDao.save(hire);
         return new ResponseEntity<>(hire, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/admin/deleteHire/{id}")
+    @JsonView({ViewHire.class})
+    public ResponseEntity<Hire> deleteHire(@PathVariable int id){
+        Optional<Hire> hireToDelete = hireDao.findById(id);
+        if(hireToDelete.isPresent()){
+            hireDao.deleteById(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
