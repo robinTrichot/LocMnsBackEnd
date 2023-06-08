@@ -4,6 +4,7 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Material;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewCopy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -91,4 +92,75 @@ public class CopyController {
         copyDao.save(copy);
         return new ResponseEntity<>(copy, HttpStatus.OK);
     }
+    //Changement status en stock de la copie pour une panne
+//    @PostMapping("/changeInStockCopy")
+//    public ResponseEntity<Copy> changeInStockCopy(@RequestBody Copy copy) {
+//
+//        if (copy.getId() != null) {
+//
+//            Optional<Copy> optional = copyDao.findById(copy.getId());
+//
+//            if (optional.isPresent()) {
+//                Copy copyToUpdate = optional.get();
+//                copyToUpdate.setDateOutOfStock(copy.getDateOutOfStock());
+//                copyToUpdate.setDatePurchase(copy.getDatePurchase());
+//                copyToUpdate.setInStock(copy.getInStock());
+//                copyToUpdate.setSerialNumber(copy.getSerialNumber());
+//                copyToUpdate.setFeatures(copy.getFeatures());
+//                copyToUpdate.setMaterial(copy.getMaterial());
+//
+//                if (Objects.equals(copy.getInStock(), false)) {
+//                    copyToUpdate.setInStock(true);
+//                } else if (Objects.equals(copy.getInStock(), true)) {
+//                    copyToUpdate.setInStock(false);
+//                }
+//                copyDao.save(copyToUpdate);
+//
+//                return new ResponseEntity<>(copy, HttpStatus.OK);
+//            }
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        copyDao.save(copy);
+//        return new ResponseEntity<>(copy, HttpStatus.OK);
+//    }
+
+
+    @PostMapping("/admin/addCopy")
+    public ResponseEntity<Copy> addCopy(
+            @RequestPart("copy") Copy newCopy
+    ) {
+        if (newCopy.getId() != null) {
+            Optional<Copy> optionalCopy = copyDao.findById(newCopy.getId());
+            if (optionalCopy.isPresent())  {
+                Copy copyToUpdate = optionalCopy.get();
+                copyToUpdate.setDatePurchase(newCopy.getDatePurchase());
+                copyToUpdate.setStatus(newCopy.getStatus());
+                copyToUpdate.setDateOutOfStock(newCopy.getDateOutOfStock());
+                copyToUpdate.setSerialNumber(newCopy.getSerialNumber());
+
+                copyDao.save(copyToUpdate);
+
+                return new ResponseEntity<>(newCopy, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        this.copyDao.save(newCopy);
+        return new ResponseEntity<>(newCopy, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/admin/deleteCopy/{id}")
+    @JsonView(ViewCopy.class)
+    public ResponseEntity<Material> deleteCopy(@PathVariable int id){
+        Optional<Copy> copyToDelete = copyDao.findById(id);
+        if(copyToDelete.isPresent()){
+            copyDao.deleteById(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
+
 }
+
