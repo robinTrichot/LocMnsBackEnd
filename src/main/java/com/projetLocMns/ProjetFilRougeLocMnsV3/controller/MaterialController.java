@@ -55,14 +55,18 @@ public class MaterialController {
     public ResponseEntity<Material> addMaterial(
             @RequestPart("material") Material newMaterial,
             @Nullable @RequestParam("fichier") MultipartFile fichier
+
     ) {
         if (newMaterial.getId() != null) {
+
             Optional<Material> optionalMaterial = materialDao.findById(newMaterial.getId());
+
             if (optionalMaterial.isPresent()) {
+
                 Material materialToUpdate = optionalMaterial.get();
                 materialToUpdate.setWording(newMaterial.getWording());
-                materialToUpdate.setStructure(optionalMaterial.get().getStructure());
-                materialToUpdate.setTrademarkMaterial(optionalMaterial.get().getTrademarkMaterial());
+                materialToUpdate.setStructure(newMaterial.getStructure());
+                materialToUpdate.setTrademarkMaterial(newMaterial.getTrademarkMaterial());
 
                 materialDao.save(materialToUpdate);
 
