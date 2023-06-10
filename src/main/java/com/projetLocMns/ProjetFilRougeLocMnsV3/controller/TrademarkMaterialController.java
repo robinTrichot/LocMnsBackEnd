@@ -18,14 +18,14 @@ public class TrademarkMaterialController {
     @Autowired
     TrademarkMaterialDao trademarkMaterialDao;
 
-    @GetMapping("/trademarksMaterial")
+    @GetMapping("/user/trademarksMaterial")
     @JsonView({ViewTrademarkMaterial.class})
     public List<TrademarkMaterial> getTrademarksMaterial() {
         List trademarksMaterial = trademarkMaterialDao.findAll();
         return trademarksMaterial;
     }
 
-    @GetMapping("/trademarkMaterial/{id}")
+    @GetMapping("/user/trademarkMaterial/{id}")
     @JsonView({ViewTrademarkMaterial.class})
     public ResponseEntity<TrademarkMaterial> getTrademarkMaterial(@PathVariable int id) {
         Optional<TrademarkMaterial> optionalTrademarkMaterial = trademarkMaterialDao.findById(id);

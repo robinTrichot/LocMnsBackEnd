@@ -22,7 +22,7 @@ public class TypeUsagerController {
 
     @Autowired
     TypeUsagerDao typeUsagerDao;
-    @GetMapping("/TypeUsagers")
+    @GetMapping("/user/TypeUsagers")
     @JsonView(ViewUser.class)
     public List<User> getTypeUsers() {
         List roles = typeUsagerDao.findAll();
@@ -30,7 +30,7 @@ public class TypeUsagerController {
     }
     // la suite on la fait coté front end, j'appelle dans service les roles pour afficher;
 
-    @GetMapping("typeUsager/{id}")
+    @GetMapping("/user/typeUsager/{id}")
     @JsonView({ViewUser.class})
     public ResponseEntity<TypeUsager> getTypeUsager(@PathVariable int id) {
         Optional<TypeUsager> optionalTypeUsager = typeUsagerDao.findById(id);

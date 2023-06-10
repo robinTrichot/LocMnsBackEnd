@@ -19,13 +19,13 @@ public class FeaturesController {
     @Autowired
     FeaturesDao featuresDao;
 
-    @GetMapping("/features")
+    @GetMapping("/user/features")
     public List<Features> getFeatures() {
         List features = featuresDao.findAll();
         return features;
     }
 
-    @GetMapping("/feature/{id}")
+    @GetMapping("/user/feature/{id}")
     @JsonView({ViewFeatures.class})
     public ResponseEntity<Features> getFeature(@PathVariable int id) {
         Optional<Features> optionalFeatures = featuresDao.findById(id);

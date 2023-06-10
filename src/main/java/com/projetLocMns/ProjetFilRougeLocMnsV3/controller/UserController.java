@@ -36,14 +36,14 @@ public class UserController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/usagers")
+    @GetMapping("/user/usagers")
     @JsonView(ViewUser.class)
     public List<User> getUsers() {
         List usagers = userDao.findAll();
         return usagers;
     }
 
-    @GetMapping("/usager/{id}")
+    @GetMapping("/user/usager/{id}")
     @JsonView(ViewUser.class)
     public ResponseEntity<User> getUtilisateur(@PathVariable int id) {
 
@@ -112,7 +112,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/image-profil/{idUtilisateur}")
+    @GetMapping("/user/image-profil/{idUtilisateur}")
     public ResponseEntity<byte[]> getImageProfil(@PathVariable int idUtilisateur) {
 
         Optional<User> optional = userDao.findById(idUtilisateur);

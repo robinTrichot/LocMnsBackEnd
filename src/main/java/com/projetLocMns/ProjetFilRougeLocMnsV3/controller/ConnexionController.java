@@ -35,7 +35,9 @@ public class ConnexionController {
     @Autowired
     MonUserDetailsService monUserDetailsService;
 
-    @PostMapping("/connexion")
+
+
+    @PostMapping("/user/connexion")
     public ResponseEntity<String> connexion(@RequestBody User user) {
 
         MyUserDetails myUserDetails;

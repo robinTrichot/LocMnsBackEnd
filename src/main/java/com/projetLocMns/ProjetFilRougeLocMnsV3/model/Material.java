@@ -24,7 +24,7 @@ public class Material {
     private String wording;
 
     @JsonView(ViewMaterial.class)
-    private String picture;
+    private String pictureName;
 
     @JsonView(ViewMaterial.class)
     private String notice;
