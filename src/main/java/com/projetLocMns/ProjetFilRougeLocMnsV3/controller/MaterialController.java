@@ -2,10 +2,7 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.MaterialDao;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Material;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Structure;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.TrademarkMaterial;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.services.FileService;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,15 +28,16 @@ public class MaterialController {
     @Autowired
     MaterialDao materialDao;
 
+    @Autowired
     private FileService fileService;
 
-    @GetMapping("/materials")
+    @GetMapping("/user/materials")
     public List<Material> getMaterials() {
         List materials= materialDao.findAll();
         return materials;
     }
 
-    @GetMapping("/materialById/{id}")
+    @GetMapping("/user/materialById/{id}")
     @JsonView(ViewMaterial.class)
     public ResponseEntity<Material> getMaterial(@PathVariable int id) {
         Optional<Material> optionalMaterial = materialDao.findById(id);
@@ -81,18 +77,11 @@ public class MaterialController {
             }
             return new ResponseEntity<>(newMaterial, HttpStatus.BAD_REQUEST);
         }
-        TrademarkMaterial trademarkMaterial = new TrademarkMaterial();
-        trademarkMaterial.setId(1);
-        newMaterial.setTrademarkMaterial(trademarkMaterial);
-
-        Structure structure = new Structure();
-        structure.setId(1);
-        newMaterial.setStructure(structure);
 
         if (fichier != null) {
             try {
                 String pictureName = UUID.randomUUID() + "_" + fichier.getOriginalFilename();
-                newMaterial.setPicture(pictureName);
+                newMaterial.setPictureName(pictureName);
                 fileService.transfertVersDossierUpload(fichier, pictureName);
             } catch (IOException e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -102,12 +91,12 @@ public class MaterialController {
         return new ResponseEntity<>(newMaterial, HttpStatus.CREATED);
     }
 
-    @GetMapping("/picture-material/{idMaterial}")
+    @GetMapping("/user/picture-material/{idMaterial}")
     public ResponseEntity<byte[]> getPictureMaterial(@PathVariable int idMaterial) {
         Optional<Material> optionalMaterial = materialDao.findById(idMaterial);
 
         if(optionalMaterial.isPresent()){
-            String pictureName = optionalMaterial.get().getPicture();
+            String pictureName = optionalMaterial.get().getPictureName();
             try  {
                 byte[] picture = fileService.getImageByName(pictureName);
                 HttpHeaders enTete = new HttpHeaders();

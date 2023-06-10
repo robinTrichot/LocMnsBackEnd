@@ -20,13 +20,13 @@ public class EventHireController {
     @Autowired
     EventHireDao eventHireDao;
 
-    @GetMapping("/EventHire")
+    @GetMapping("/user/EventHire")
     public List<EventHire> getEventHire() {
         List eventHires = eventHireDao.findAll();
         return eventHires;
     }
 
-    @GetMapping("eventHire/{id}")
+    @GetMapping("/user/eventHire/{id}")
     @JsonView({ViewEventHire.class})
     public ResponseEntity<EventHire> getEventHire(@PathVariable int id) {
         Optional<EventHire> optionalEventHire = eventHireDao.findById(id);

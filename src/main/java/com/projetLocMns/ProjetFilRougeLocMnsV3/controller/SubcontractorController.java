@@ -19,13 +19,13 @@ public class SubcontractorController {
     @Autowired
     SubcontractorDao subcontractorDao;
 
-    @GetMapping("/subcontractors")
+    @GetMapping("/user/subcontractors")
     public List<Subcontractor> getSubcontractors() {
         List subcontractors = subcontractorDao.findAll();
         return subcontractors;
     }
 
-    @GetMapping("subcontractor/{id}")
+    @GetMapping("/user/subcontractor/{id}")
     @JsonView({ViewSubcontractor.class})
     public ResponseEntity<Subcontractor> getSubcontractor(@PathVariable int id) {
         Optional<Subcontractor> optionalSubcontractor = subcontractorDao.findById(id);

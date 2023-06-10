@@ -18,14 +18,14 @@ public class FailureController {
     @Autowired
     FailureDao failureDao;
 
-    @GetMapping("/failures")
+    @GetMapping("/user/failures")
     @JsonView({ViewFailure.class})
     public List<Failure> getFailures() {
         List failures = failureDao.findAll();
         return failures;
     }
 
-    @GetMapping("/failure/{id}")
+    @GetMapping("/user/failure/{id}")
     @JsonView({ViewFailure.class})
     public ResponseEntity<Failure> getFailure(@PathVariable int id) {
         Optional<Failure> optionalFailure = failureDao.findById(id);
@@ -35,7 +35,7 @@ public class FailureController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("panne")
+    @PostMapping("/user/panne")
     public ResponseEntity<Failure> addFailure(@RequestBody Failure newFailure) {
 
         if (newFailure.getId() != null) {

@@ -32,14 +32,14 @@ public class StructureController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping("/structures")
+    @GetMapping("/user/structures")
     @JsonView(ViewStructure.class)
     public List<Structure> getStructure() {
         List structures = structureDao.findAll();
         return structures;
     }
 
-    @GetMapping("structure/{id}")
+    @GetMapping("/user/structure/{id}")
     @JsonView(ViewStructure.class)
     public ResponseEntity<Structure> getStructures(@PathVariable int id) {
         Optional<Structure> optionalStructure = structureDao.findById(id);
@@ -93,7 +93,7 @@ public class StructureController {
         return new ResponseEntity<>(newStructure, HttpStatus.CREATED);
     }
 
-    @GetMapping("/picture-structure/{idStructure}")
+    @GetMapping("/user/picture-structure/{idStructure}")
     public ResponseEntity<byte[]> getPictureStructure(@PathVariable int idStructure) {
         Optional<Structure> optionalStructure = structureDao.findById(idStructure);
 

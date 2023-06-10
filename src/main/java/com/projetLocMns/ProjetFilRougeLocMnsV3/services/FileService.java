@@ -21,12 +21,11 @@ public class FileService {
     // donc une methode avec le fichier en param + son nom;
     public void transfertVersDossierUpload(MultipartFile fichier, String nomDuFichier) throws IOException {
         // path permet de declarer un chemin
-        // /!\ attention au ptahS
+        // /!\ attention au paths
         Path cheminDossierUpload = Paths.get(dossierUpload);
 
         //est ce que le chemin existe ? si oui on crée le dossier
         if (!Files.exists(cheminDossierUpload)) {
-
             Files.createDirectories(cheminDossierUpload);
         }
 
@@ -50,6 +49,5 @@ public class FileService {
         } catch (IOException e) {
             throw new FileNotFoundException(e.getMessage());
         }
-
     }
 }

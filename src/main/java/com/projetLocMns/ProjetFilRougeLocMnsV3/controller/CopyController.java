@@ -21,13 +21,13 @@ public class CopyController {
     @Autowired
     CopyDao copyDao;
 
-    @GetMapping("/copies")
+    @GetMapping("/user/copies")
     public List<Copy> getCopy() {
         List copies = copyDao.findAll();
         return copies;
     }
 
-    @GetMapping("/copie/{id}")
+    @GetMapping("/user/copie/{id}")
     public ResponseEntity<Copy> getCopy(@PathVariable int id) {
 
         Optional<Copy> optional = copyDao.findById(id);
@@ -39,7 +39,7 @@ public class CopyController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/copiesDispo")
+    @GetMapping("/user/copiesDispo")
     @JsonView(ViewCopy.class)
     public List<Object[]> getStatus() {
         return copyDao.findByStatus();
@@ -51,18 +51,18 @@ public class CopyController {
 
 
     //renvoit les exemplaires lorsque l'on choisi un matériel en question
-    @GetMapping("/material/{wording}")
+    @GetMapping("/user/material/{wording}")
     public List<Copy> trouverExemplairesParMateriel(@PathVariable String wording) {
         return copyDao.findByWording(wording);
     }
 
     //renvoit les exemplaires lorsque l'on choisi un matériel en question par l'id;
-    @GetMapping("/material/id/{id}")
+    @GetMapping("/user/material/id/{id}")
     public List<Copy> trouverExemplairesParMaterielId(@PathVariable Integer id) {
         return copyDao.findCopyByMaterialId(id);
     }
 
-    @PostMapping("/change/copy")
+    @PostMapping("/user/change/copy")
     public ResponseEntity<Copy> changeStatusCopy(@RequestBody Copy copy) {
 
         if (copy.getId() != null) {

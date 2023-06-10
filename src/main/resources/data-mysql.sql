@@ -31,7 +31,7 @@ VALUES ("MNS_Ifa"),
        ("Ifa Buisness School Metz");
 
 
-INSERT INTO material (wording, picture, trademark, structure, notice)
+INSERT INTO material (wording, picture_name, trademark, structure, notice)
 VALUES ("pc_asus", "asus1.png", 1, 1, "document.pdf"),
        ("cle_usb", "usb.png", 2, 1, "document.pdf"),
        ("ecran_fixe", "ecran.png", 3, 1, "document.pdf");

@@ -5,16 +5,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.HireDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.UserDao;
-import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Copy;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Hire;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -30,7 +27,7 @@ public class HireController {
     @Autowired
     CopyDao copyDao;
 
-    @PostMapping("/commande")
+    @PostMapping("/user/commande")
     public ResponseEntity<Hire> createHire(@RequestBody Hire hire) {
 
         if (hire.getId() != null) {
@@ -65,7 +62,7 @@ public class HireController {
         return hires;
     }
 
-    @GetMapping("/HireUser/{idUser}")
+    @GetMapping("/user/HireUser/{idUser}")
     public List<Hire> getHiresByUser(@PathVariable int idUser) {
         List hires = hireDao.findHireByIdUser(idUser);
         return hires;
