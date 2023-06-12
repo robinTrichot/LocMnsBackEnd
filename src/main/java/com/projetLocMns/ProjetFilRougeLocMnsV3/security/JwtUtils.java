@@ -5,8 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,25 +14,22 @@ import java.util.Map;
 @Service
 public class JwtUtils {
 
-//    @Value("${jwt.hidden}")
-//    String jwtHidden;
+    @Value("${jwt.hidden}")
+    String jwtHidden;
 
     public String generateJwt(MyUserDetails myUserDetails) {
 
         Map<String, Object> data = new HashMap<>();
         data.put("login", myUserDetails.getUsager().getLogin());
-        data.put("password", myUserDetails.getUsager().getPassword());
         data.put("role", myUserDetails.getUsager().getRole().getRole());
         data.put("lastname", myUserDetails.getUsager().getLastname());
         data.put("firstname", myUserDetails.getUsager().getFirstname());
         data.put("nomImageProfil", myUserDetails.getUsager().getNomImageProfil());
         data.put("idTest", myUserDetails.getUsager().getId());
 
-
-
         return Jwts.builder()
                 .setClaims(data)
-                .setSubject(myUserDetails.getUsername()) // attention à l'ordre ici, il faut dabord claims puis subject sinon ça écrase
+                .setSubject(myUserDetails.getUsername())
                 .signWith(SignatureAlgorithm.HS256, "azerty")
                 .compact();
     }
