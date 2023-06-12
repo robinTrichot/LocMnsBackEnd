@@ -140,6 +140,10 @@
 
 	</dependencies>
 
+<!--	<properties>-->
+<!--		<jwt_hidden>azerty</jwt_hidden>-->
+<!--	</properties>-->
+
 	<build>
 		<plugins>
 			<plugin>

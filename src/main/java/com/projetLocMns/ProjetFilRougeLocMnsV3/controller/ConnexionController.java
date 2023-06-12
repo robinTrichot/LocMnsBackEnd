@@ -25,17 +25,12 @@ public class ConnexionController {
     // j'ai rajouté ce commentaire rassurant
     @Autowired
     AuthenticationManager authenticationManager;
-
     @Autowired
     UserDao userDao;
-
     @Autowired
     JwtUtils jwtUtils;
-
     @Autowired
     MonUserDetailsService monUserDetailsService;
-
-
 
     @PostMapping("/user/connexion")
     public ResponseEntity<String> connexion(@RequestBody User user) {
@@ -54,3 +49,4 @@ public class ConnexionController {
         return new ResponseEntity<>(jwtUtils.generateJwt(myUserDetails), HttpStatus.OK);
     }
 }
+

@@ -12,25 +12,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-
-import javax.sql.DataSource;
 import java.util.Arrays;
 
 @EnableWebSecurity
 public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
-
-
     @Autowired
     private MonUserDetailsService monUserDetailsService;
-
     @Autowired
     JwtFilter filter;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(monUserDetailsService);
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(httpServletRequest -> {
@@ -54,12 +47,10 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
-
     @Bean
     public PasswordEncoder creationPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

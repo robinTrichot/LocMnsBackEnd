@@ -95,7 +95,7 @@ public class UserController {
             return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
         }
 
-        String passwordHache = passwordEncoder.encode("root");
+        String passwordHache = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(passwordHache);
 
         if (fichier != null) {
