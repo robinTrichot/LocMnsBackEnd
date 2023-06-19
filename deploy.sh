@@ -7,13 +7,13 @@ git pull
 sudo bash mvnw --settings /home/debian/.m2/settings.xml package -Pprod -Psysadmin
 
 #Construire l'image Docker
-docker build --no-cache -t demospringboot .
+docker build --no-cache -t loc-mns-back-end .
 
 #Arreter le conteneur existant
-docker stop conteneur-spring-demo
+docker stop conteneur-loc-mns
 
 #Supprimer le conteneur existant
-docker rm conteneur-spring-demo
+docker rm conteneur-loc-mns
 
 #Lancer un nouveau conteneur
-docker run -d --net backend --ip 172.18.0.4 --name=conteneur-spring-demo -p 8080:8080 -v uploaded_files:/uploads demospringboot
+docker run -d --net backend --ip 172.18.0.4 --name=conteneur-loc-mns -p 8080:8080 -v uploaded_files:/uploads loc-mns-back-end
