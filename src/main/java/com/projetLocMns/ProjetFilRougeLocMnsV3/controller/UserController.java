@@ -67,7 +67,6 @@ public class UserController {
             if (optional.isPresent()) {
 
                 User userToUpdate = optional.get();
-                userToUpdate.setLogin(newUser.getLogin());
                 userToUpdate.setPassword(newUser.getPassword());
                 userToUpdate.setLastname(newUser.getLastname());
                 userToUpdate.setFirstname(newUser.getFirstname());

@@ -20,8 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(ViewUser.class)
     private Integer id;
-    @JsonView(ViewUser.class)
-    private String login;
 
     private String password;
 

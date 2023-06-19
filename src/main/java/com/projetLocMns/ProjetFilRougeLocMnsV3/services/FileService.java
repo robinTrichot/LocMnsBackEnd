@@ -29,7 +29,7 @@ public class FileService {
             Files.createDirectories(cheminDossierUpload);
         }
 
-        Path destination = Paths.get(dossierUpload + "\\" + nomDuFichier);
+        Path destination = Paths.get(dossierUpload + "/" + nomDuFichier);
 
 
         // donc copy du fichier, à destionation de la destination créée ci-dessus;
