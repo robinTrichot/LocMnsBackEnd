@@ -162,7 +162,7 @@
                 <nom_fichier_sql>mysql</nom_fichier_sql>
                 <initialisation_donnee_bdd>true</initialisation_donnee_bdd>
                 <mode_initialisation_donnee_bdd>always</mode_initialisation_donnee_bdd>
-                <dossier_upload>À changer dans le fichier C:\Users\stagiaire\.m2\settings.xml</dossier_upload>
+                <dossier_upload>root</dossier_upload>
 
                 <skipUnitTest>false</skipUnitTest>
 
