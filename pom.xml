@@ -155,7 +155,7 @@
             </activation>
             <properties>
                 <adresse_serveur_bdd>localhost:3306</adresse_serveur_bdd>
-                <nom_bdd>spring_mns_23</nom_bdd>
+                <nom_bdd>loc_mns</nom_bdd>
                 <utilisateur_bdd>root</utilisateur_bdd>
                 <mot_de_passe_bdd></mot_de_passe_bdd>
                 <ddl_auto>create</ddl_auto>
@@ -175,7 +175,7 @@
             <id>prod</id>
             <properties>
                 <adresse_serveur_bdd>172.18.0.2:3306</adresse_serveur_bdd>
-                <nom_bdd>spring_mns_23</nom_bdd>
+                <nom_bdd>loc_mns</nom_bdd>
                 <utilisateur_bdd>root</utilisateur_bdd>
                 <mot_de_passe_bdd>Info à definir dans le fichier settings.xml du serveur</mot_de_passe_bdd>
                 <ddl_auto>none</ddl_auto>

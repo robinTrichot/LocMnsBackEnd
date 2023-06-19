@@ -34,13 +34,13 @@ public class JwtUtils {
                 .setClaims(data)
                 .setSubject(myUserDetails.getUsername())
                 .setExpiration(expirationDate)
-                .signWith(SignatureAlgorithm.HS256, jwtHidden)
+                .signWith(SignatureAlgorithm.HS256, "azerty")
                 .compact();
     }
 
     public Claims getData(String jwt) {
         return Jwts.parser()
-                .setSigningKey(jwtHidden)
+                .setSigningKey("azerty")
                 .parseClaimsJws(jwt)
                 .getBody();
     }
