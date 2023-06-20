@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import java.util.Arrays;
+import java.util.Collections;
 
 @EnableWebSecurity
 public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
@@ -28,6 +29,7 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(httpServletRequest -> {
                     CorsConfiguration corsConfiguration = new CorsConfiguration();
+                    corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
                     corsConfiguration.applyPermitDefaultValues();
                     corsConfiguration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "DELETE", "PUT", "PATCH"));
                     corsConfiguration.setAllowedHeaders(
