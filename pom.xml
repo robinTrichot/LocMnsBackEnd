@@ -144,6 +144,19 @@
         <!--			<artifactId>jackson-databind</artifactId>-->
         <!--		</dependency>-->
 
+
+<!--        Ici pour tomcat changement version-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
