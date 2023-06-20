@@ -30,10 +30,4 @@ public class ProjetFilRougeLocMnsV3Application extends SpringBootServletInitiali
         return application.sources(ProjetFilRougeLocMnsV3Application.class);
     }
 
-    @PostConstruct
-    public void init() {
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-    }
-
-
 }
