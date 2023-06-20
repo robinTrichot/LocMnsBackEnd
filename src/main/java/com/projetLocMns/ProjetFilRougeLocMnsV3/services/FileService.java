@@ -43,6 +43,8 @@ public class FileService {
     // rappel : tableau de bytes car c'est de binaire une image
     // pour cela il faut la transformer cette image en tableau de byte, on utilise uen classep our ça
 
+
+
     public byte[] getImageByName(String nomImage) throws FileNotFoundException {
 
         Path destination = Paths.get(dossierUpload + "/" + nomImage);// retrieve the image by its name
