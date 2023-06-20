@@ -4,7 +4,7 @@
 git pull
 
 #Construire le projet avec Maven
-sudo bash mvnw --settings /home/debian/.m2/settings.xml package -Pdev
+sudo bash mvnw --settings /home/debian/.m2/settings.xml package -Pprod
 
 #Construire l'image Docker
 docker build --no-cache -t loc-mns-back-end .
