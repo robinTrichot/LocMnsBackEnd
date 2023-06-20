@@ -2,6 +2,7 @@ package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewStructure;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,7 +58,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Connection> connections;
 
-    @JsonIgnore
+    @JsonView({ViewUser.class, ViewStructure.class})
     @ManyToMany
     @JoinTable(
             name = "belongs_user_structure",

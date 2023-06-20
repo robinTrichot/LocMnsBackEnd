@@ -16,7 +16,7 @@ public class JwtUtils {
     @Value("${jwt.hidden}")
     String jwtHidden;
 
-    private static final long EXPIRATION_TOKEN = 60 * 1000; // 60 secondes
+    private static final long EXPIRATION_TOKEN = 120 * 1000; // 60 secondes
 
     public String generateJwt(MyUserDetails myUserDetails) {
 
