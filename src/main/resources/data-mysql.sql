@@ -36,21 +36,21 @@ VALUES ("pc_asus", "asus1.png", 1, 1, "document.pdf"),
        ("cle_usb", "usb.png", 2, 1, "document1.pdf"),
        ("ecran_fixe", "ecran.png", 3, 1, "document2.pdf");
 
-INSERT INTO user(login, password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
+INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
                  postal_code, city, role)
-VALUES ("Franck57", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 552527572,
+VALUES ( "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 552527572,
         51455545, "admin@com", 12, "rue de france",
         "1244g", "longwy", 1),
-       ("Jonh54", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "rambo", "Jhon", 64255444, 51455545,
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "rambo", "Jhon", 64255444, 51455545,
         "rambo@com", 12, "rue de france",
         "1244g", "longwy", 2),
-       ("Ali27", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 75275275, 51455545,
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 75275275, 51455545,
         "aLI@com", 12, "rue de france",
         "1244g", "longwy", 2),
-       ("Jojo59", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 75275444,
+       ( "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 75275444,
         51455545, "bERNARD@com", 12,
         "rue de france", "1244g", "longwy", 2),
-       ("Titi57", "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 554827572,
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 554827572,
         22455545, "titi@com", 1, "Rue des Roses",
         "57000", "Metz", 1);
 
