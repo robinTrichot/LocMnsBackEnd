@@ -29,7 +29,7 @@ public class ConfigurationSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(httpServletRequest -> {
                     CorsConfiguration corsConfiguration = new CorsConfiguration();
-                    corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
                     corsConfiguration.applyPermitDefaultValues();
                     corsConfiguration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "DELETE", "PUT", "PATCH"));
                     corsConfiguration.setAllowedHeaders(
