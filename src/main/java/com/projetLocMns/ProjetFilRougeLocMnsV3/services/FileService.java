@@ -18,6 +18,9 @@ public class FileService {
     @Value("${dossier.upload}")
     private String dossierUpload;
 
+    @Value("${notice.upload}")
+    private String noticeUpload;
+
     // donc une methode avec le fichier en param + son nom;
     public void transfertVersDossierUpload(MultipartFile fichier, String nomDuFichier) throws IOException {
         // path permet de declarer un chemin
@@ -45,6 +48,31 @@ public class FileService {
         Path destination = Paths.get(dossierUpload + "/" + nomImage);// retrieve the image by its name
         try {
             // donc ici on transforme bien l'image en binaire;
+            return IOUtils.toByteArray(destination.toUri());
+        } catch (IOException e) {
+            throw new FileNotFoundException(e.getMessage());
+        }
+    }
+
+
+    // Méthode pour transférer le fichier de notice vers le dossier de téléchargement
+    public void transfertNoticeVersDossierUpload(MultipartFile notice, String nomDuFichier) throws IOException {
+        Path cheminDossierUpload = Paths.get(noticeUpload);
+
+        if (!Files.exists(cheminDossierUpload)) {
+            Files.createDirectories(cheminDossierUpload);
+        }
+
+        Path destination = Paths.get(noticeUpload + "/" + nomDuFichier);
+
+        Files.copy(notice.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    // Méthode pour récupérer le fichier de notice par son nom
+    public byte[] getNoticeByName(String nomNotice) throws FileNotFoundException {
+        Path destination = Paths.get(noticeUpload + "/" + nomNotice);
+
+        try {
             return IOUtils.toByteArray(destination.toUri());
         } catch (IOException e) {
             throw new FileNotFoundException(e.getMessage());

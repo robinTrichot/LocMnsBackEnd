@@ -17,6 +17,13 @@ public class ProjetFilRougeLocMnsV3Application extends SpringBootServletInitiali
         SpringApplication.run(ProjetFilRougeLocMnsV3Application.class, args);
     }
 
+
+	//définit le fuseau horaire par défaut de l'application sur UTC (Temps universel coordonné)
+	@PostConstruct
+	public void init(){
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+	}
+
     // ici important pour le deployement :
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -27,5 +34,6 @@ public class ProjetFilRougeLocMnsV3Application extends SpringBootServletInitiali
     public void init() {
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
+
 
 }

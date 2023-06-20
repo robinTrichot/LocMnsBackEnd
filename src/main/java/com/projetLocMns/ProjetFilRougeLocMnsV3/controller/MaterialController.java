@@ -50,9 +50,11 @@ public class MaterialController {
     @PostMapping("/admin/addMaterial")
     public ResponseEntity<Material> addMaterial(
             @RequestPart("material") Material newMaterial,
-            @Nullable @RequestParam("fichier") MultipartFile fichier
+            @Nullable @RequestParam("fichier") MultipartFile fichier,
+            @Nullable @RequestParam("notice") MultipartFile notice
 
     ) {
+        System.out.println(newMaterial);
         if (newMaterial.getId() != null) {
 
             Optional<Material> optionalMaterial = materialDao.findById(newMaterial.getId());
@@ -69,6 +71,7 @@ public class MaterialController {
                 if (fichier != null) {
                     try {
                         fileService.transfertVersDossierUpload(fichier, "material-picture");
+                        fileService.transfertNoticeVersDossierUpload(fichier, "notice-file");
                     } catch (IOException e) {
                         return  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                     }
@@ -87,22 +90,64 @@ public class MaterialController {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+
+        if (notice != null) {
+            try {
+                String noticeName = UUID.randomUUID() + "_" + notice.getOriginalFilename();
+                newMaterial.setNotice(noticeName);
+                fileService.transfertNoticeVersDossierUpload(notice, noticeName);
+            } catch (IOException e) {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
         materialDao.save(newMaterial);
         return new ResponseEntity<>(newMaterial, HttpStatus.CREATED);
     }
 
     @GetMapping("/user/picture-material/{idMaterial}")
     public ResponseEntity<byte[]> getPictureMaterial(@PathVariable int idMaterial) {
+
         Optional<Material> optionalMaterial = materialDao.findById(idMaterial);
 
-        if(optionalMaterial.isPresent()){
+        if (optionalMaterial.isPresent()) {
             String pictureName = optionalMaterial.get().getPictureName();
-            try  {
+
+            try {
                 byte[] picture = fileService.getImageByName(pictureName);
-                HttpHeaders enTete = new HttpHeaders();
+
+                HttpHeaders headers = new HttpHeaders();
                 String mimeType = Files.probeContentType(new File(pictureName).toPath());
+                headers.setContentType(MediaType.valueOf(mimeType));
+
+                return new ResponseEntity<>(picture, headers, HttpStatus.OK);
+
+            } catch (FileNotFoundException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } catch (IOException e) {
+                System.out.println("La récupération du mimeType a échoué");
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
+
+    @GetMapping("/user/notice-file/{idMaterial}")
+    public ResponseEntity<byte[]> getNoticeByName(@PathVariable String idMaterial) {
+
+        Optional<Material> optionalMaterial = materialDao.findByNotice(idMaterial);
+
+        if(optionalMaterial.isPresent()){
+            String noticeName = optionalMaterial.get().getNotice();
+            try  {
+                byte[] notice = fileService.getNoticeByName(noticeName);
+                HttpHeaders enTete = new HttpHeaders();
+                String mimeType = Files.probeContentType(new File(noticeName).toPath());
                 enTete.setContentType(MediaType.valueOf(mimeType));
-                return  new ResponseEntity<>(picture, enTete, HttpStatus.OK);
+                return  new ResponseEntity<>(notice, enTete, HttpStatus.OK);
             } catch (FileNotFoundException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } catch (IOException e) {
