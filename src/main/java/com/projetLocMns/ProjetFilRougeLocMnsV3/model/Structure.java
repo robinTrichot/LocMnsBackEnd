@@ -1,8 +1,8 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewStructure;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,31 +19,23 @@ public class Structure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonView(ViewStructure.class)
+    @JsonView({ViewStructure.class, ViewUser.class})
     private String wording;
 
-    @JsonView(ViewStructure.class)
     private String picture;
 
-    @JsonView(ViewStructure.class)
     private int phone;
 
-    @JsonView(ViewStructure.class)
     private String type;
 
-    @JsonView(ViewStructure.class)
     private int streetNumber;
 
-    @JsonView(ViewStructure.class)
     private String nameStreet;
 
-    @JsonView(ViewStructure.class)
     private String postalCode;
 
-    @JsonView(ViewStructure.class)
     private String city;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "belongs_user_structure",

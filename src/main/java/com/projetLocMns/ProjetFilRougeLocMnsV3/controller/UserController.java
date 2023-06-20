@@ -58,6 +58,7 @@ public class UserController {
 
     @PostMapping("/admin/addUsager")
     public ResponseEntity<User> addUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
+
         //si l'utilisateur fournit possède un id
         if (newUser.getId() != null) {
 
