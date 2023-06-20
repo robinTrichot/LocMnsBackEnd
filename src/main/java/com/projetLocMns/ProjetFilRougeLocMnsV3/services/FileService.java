@@ -41,6 +41,7 @@ public class FileService {
     // pour cela il faut la transformer cette image en tableau de byte, on utilise uen classep our ça
 
 
+
     public byte[] getImageByName(String nomImage) throws FileNotFoundException {
 
         Path destination = Paths.get(dossierUpload + "/" + nomImage);// retrieve the image by its name
