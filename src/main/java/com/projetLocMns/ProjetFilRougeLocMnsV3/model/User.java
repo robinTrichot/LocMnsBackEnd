@@ -58,7 +58,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Connection> connections;
 
-    @JsonView({ViewUser.class, ViewStructure.class})
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "belongs_user_structure",
