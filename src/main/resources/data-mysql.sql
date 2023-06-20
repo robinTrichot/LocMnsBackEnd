@@ -9,7 +9,9 @@ VALUES ("aucuneidee", "0222144", 12, "ruevictorhugo", "12111", "Palavaslesflots"
 
 
 INSERT INTO structure (wording, picture, phone, type, street_number, name_street, postal_code, city)
-VALUES ("IFA", "ifa.png", 062454444, "ecole progra", 12, "rue france", "57000", "Metz");
+VALUES ("MNS", "ifa.png", 062454444, "ecole progra", 12, "rue france", "57000", "Metz"),
+       ("IFABuisness", "ifa.png", 062454444, "marketing", 12, "rue france", "57000", "Metz"),
+       ("IFAHottelerie", "ifa.png", 062454444, "ecole hoteliere", 12, "rue france", "57000", "Metz");
 
 INSERT INTO trademark_material (wording)
 VALUES ("asus"),
@@ -38,7 +40,7 @@ VALUES ("pc_asus", "asus1.png", 1, 1, "document.pdf"),
 
 INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
                  postal_code, city, role)
-VALUES ( "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 552527572,
+VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 552527572,
         51455545, "admin@com", 12, "rue de france",
         "1244g", "longwy", 1),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "rambo", "Jhon", 64255444, 51455545,
@@ -47,7 +49,7 @@ VALUES ( "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?",
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 75275275, 51455545,
         "aLI@com", 12, "rue de france",
         "1244g", "longwy", 2),
-       ( "$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 75275444,
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 75275444,
         51455545, "bERNARD@com", 12,
         "rue de france", "1244g", "longwy", 2),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 554827572,
@@ -84,7 +86,9 @@ VALUES ('1993-05-20', '1993-05-20', '1993-05-20', "en cours", 1, 1, 1),
 
 
 INSERT INTO belongs_user_structure (user_id, structure_id)
-VALUES (1, 1);
+VALUES (1, 1),
+       (1, 2),
+       (2, 3);
 
 INSERT INTO failure (date_failure, date_send_repair, date_return_repair, number_quote, price_repair,
                      description_failure)
