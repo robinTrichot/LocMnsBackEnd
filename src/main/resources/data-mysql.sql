@@ -92,7 +92,7 @@ VALUES (1, 1),
 
 INSERT INTO failure (date_failure, date_send_repair, date_return_repair, number_quote, price_repair,
                      description_failure)
-VALUES (12 / 21 / 1211, 12 / 20 / 1210, 02 / 12 / 1265, 12, 550.45, "grosse casse hein ! ça va couter cher");
+VALUES ('1993-05-20', '1993-05-20', '1993-05-20', '1993-05-20', "grosse casse hein ! ça va couter cher");
 
 
 
