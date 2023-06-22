@@ -64,7 +64,6 @@ public class UserController {
             // erreur 409 : l'etat de la ressource est déjà présente en sommes.
             return new ResponseEntity<>(newUser, HttpStatus.CONFLICT);
         }
-
         String passwordHache = passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(passwordHache);
 
@@ -79,20 +78,17 @@ public class UserController {
         }
         userDao.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
-
-
     }
-
+// la vérification ne marche pas à refaire !!!
     @PostMapping("/admin/putUsager")
     public ResponseEntity<User> putUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
 
-
-        Optional<User> optional = userDao.findById(newUser.getId());
+        Optional<User> optional = userDao.findByMail(newUser.getMail());
         //si c'est un update
         if (optional.isPresent()) {
 
             User userToUpdate = optional.get();
-            userToUpdate.setPassword(newUser.getPassword());
+            userToUpdate.setPassword(optional.get().getPassword()); //test apssword ?
             userToUpdate.setLastname(newUser.getLastname());
             userToUpdate.setFirstname(newUser.getFirstname());
             userToUpdate.setPhone(newUser.getPhone());
@@ -104,7 +100,6 @@ public class UserController {
             userToUpdate.setCity(newUser.getCity());
             userToUpdate.setRole(newUser.getRole());
 
-
             if (fichier != null) {
                 try {
                     fileService.transfertVersDossierUpload(fichier, "image-profil");
@@ -112,14 +107,11 @@ public class UserController {
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
-
-
             userDao.save(userToUpdate);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         }
         return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
     }
-
 
     @GetMapping("/user/image-profil/{idUtilisateur}")
     public ResponseEntity<byte[]> getImageProfil(@PathVariable int idUtilisateur) {
@@ -165,6 +157,7 @@ public class UserController {
     @DeleteMapping("/admin/deleteUsager/{id}")
     @JsonView(ViewUser.class)
     public ResponseEntity<User> supprimeUtilisateur(@PathVariable int id) {
+
         Optional<User> usagerToDelete = userDao.findById(id);
 
         if (usagerToDelete.isPresent()) {
