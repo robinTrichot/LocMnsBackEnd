@@ -34,9 +34,9 @@ VALUES ("MNS_Ifa"),
 
 
 INSERT INTO material (wording, picture_name, trademark, structure, notice)
-VALUES ("pc_asus", "asus1.png", 1, 1, "document.pdf"),
-       ("cle_usb", "usb.png", 2, 1, "document1.pdf"),
-       ("ecran_fixe", "ecran.png", 3, 1, "document2.pdf");
+VALUES ("pc_asus", "asus1.jpg", 1, 1, "document.pdf"),
+       ("cle_usb", "usb.jpg", 2, 1, "document1.pdf"),
+       ("ecran_fixe", "ecran.jpg", 3, 1, "document2.pdf");
 
 INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
                  postal_code, city, role)
