@@ -55,44 +55,14 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
     @PostMapping("/admin/addUsager")
     public ResponseEntity<User> addUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
 
-        //si l'utilisateur fournit possède un id
-        if (newUser.getId() != null) {
+        Optional<User> optional = userDao.findByMail(newUser.getMail());
 
-            Optional<User> optional = userDao.findById(newUser.getId());
-
-            //si c'est un update
-            if (optional.isPresent()) {
-
-                User userToUpdate = optional.get();
-                userToUpdate.setPassword(newUser.getPassword());
-                userToUpdate.setLastname(newUser.getLastname());
-                userToUpdate.setFirstname(newUser.getFirstname());
-                userToUpdate.setPhone(newUser.getPhone());
-                userToUpdate.setCellPhone(newUser.getCellPhone());
-                userToUpdate.setMail(newUser.getMail());
-                userToUpdate.setStreetNumber(newUser.getStreetNumber());
-                userToUpdate.setNameStreet(newUser.getNameStreet());
-                userToUpdate.setPostalCode(newUser.getPostalCode());
-                userToUpdate.setCity(newUser.getCity());
-                userToUpdate.setRole(newUser.getRole());
-
-                userDao.save(userToUpdate);
-
-                if (fichier != null) {
-                    try {
-                        fileService.transfertVersDossierUpload(fichier, "image-profil");
-                    } catch (IOException e) {
-                        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                    }
-                }
-                return new ResponseEntity<>(newUser, HttpStatus.OK);
-            }
-            //si il y a eu une tentative d'insertion d'un utilisateur avec un id qui n'existait pas
-            return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
+        if (optional.isPresent()) {
+            // erreur 409 : l'etat de la ressource est déjà présente en sommes.
+            return new ResponseEntity<>(newUser, HttpStatus.CONFLICT);
         }
 
         String passwordHache = passwordEncoder.encode(newUser.getPassword());
@@ -109,6 +79,45 @@ public class UserController {
         }
         userDao.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+
+
+    }
+
+    @PostMapping("/admin/putUsager")
+    public ResponseEntity<User> putUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
+
+
+        Optional<User> optional = userDao.findById(newUser.getId());
+        //si c'est un update
+        if (optional.isPresent()) {
+
+            User userToUpdate = optional.get();
+            userToUpdate.setPassword(newUser.getPassword());
+            userToUpdate.setLastname(newUser.getLastname());
+            userToUpdate.setFirstname(newUser.getFirstname());
+            userToUpdate.setPhone(newUser.getPhone());
+            userToUpdate.setCellPhone(newUser.getCellPhone());
+            userToUpdate.setMail(newUser.getMail());
+            userToUpdate.setStreetNumber(newUser.getStreetNumber());
+            userToUpdate.setNameStreet(newUser.getNameStreet());
+            userToUpdate.setPostalCode(newUser.getPostalCode());
+            userToUpdate.setCity(newUser.getCity());
+            userToUpdate.setRole(newUser.getRole());
+
+
+            if (fichier != null) {
+                try {
+                    fileService.transfertVersDossierUpload(fichier, "image-profil");
+                } catch (IOException e) {
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+
+
+            userDao.save(userToUpdate);
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(newUser, HttpStatus.BAD_REQUEST);
     }
 
 
