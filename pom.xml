@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -195,7 +195,8 @@
                 <nom_fichier_sql>mysql</nom_fichier_sql>
                 <initialisation_donnee_bdd>true</initialisation_donnee_bdd>
                 <mode_initialisation_donnee_bdd>always</mode_initialisation_donnee_bdd>
-                <dossier_upload>/uploads</dossier_upload>
+                <dossier_upload>/uploads/pictures</dossier_upload>
+                <notice_upload>/uploads/notices</notice_upload>
 
                 <skipUnitTest>true</skipUnitTest>
 
