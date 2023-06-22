@@ -28,9 +28,9 @@ VALUES ("20Mhertz, 8 core, lol"),
 
 
 INSERT INTO event_hire (name_event)
-VALUES ("MNS_Ifa"),
+VALUES ("MNS - Metz Numérique School"),
        ("Arènes de Metz"),
-       ("Ifa Buisness School Metz");
+       ("IFA - Institut Français des Affaires");
 
 
 INSERT INTO material (wording, picture_name, trademark, structure, notice)
@@ -40,20 +40,20 @@ VALUES ("pc_asus", "asus1.jpg", 1, 1, "document.pdf"),
 
 INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
                  postal_code, city, role)
-VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 552527572,
-        51455545, "admin@com", 12, "rue de france",
+VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 0365814397,
+        0665301317, "admin@mail.com", 12, "rue de france",
         "1244g", "longwy", 1),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "rambo", "Jhon", 64255444, 51455545,
-        "rambo@com", 12, "rue de france",
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Rambo", "Jhon", 0952356578, 0728356157,
+        "rambo@mail.com", 12, "rue de france",
         "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 75275275, 51455545,
-        "aLI@com", 12, "rue de france",
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 0382834153, 0622483389,
+        "ali@mail.com", 12, "rue de france",
         "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 75275444,
-        51455545, "bERNARD@com", 12,
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 0499526234,
+        062157466, "bernard@mail.com", 12,
         "rue de france", "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 554827572,
-        22455545, "titi@com", 1, "Rue des Roses",
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 0554827572,
+        0682648876, "titi@mail.com", 1, "Rue des Roses",
         "57000", "Metz", 1);
 
 
@@ -92,7 +92,7 @@ VALUES (1, 1),
 
 INSERT INTO failure (date_failure, date_send_repair, date_return_repair, number_quote, price_repair,
                      description_failure)
-VALUES ('1993-05-20', '1993-05-20', '1993-05-20', 12, 12, "kikou");
+VALUES ('1993-05-20', '1993-05-20', '1993-05-20', 12, 12, "Disque dur HS");
 
 
 
