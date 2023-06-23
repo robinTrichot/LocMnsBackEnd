@@ -39,7 +39,7 @@ VALUES ("pc_asus", "asus1.jpg", 1, 1, "document.pdf"),
        ("ecran_fixe", "ecran.jpg", 3, 1, "document2.pdf");
 
 INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
-                 postal_code, city, role, nomImageProfil)
+                 postal_code, city, role, nom_image_profil)
 VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui", "Franck", 0365814397,
         0665301317, "admin@mail.com", 12, "Rue de France", "54400", "Longwy", 1, "qui.jpg"),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Ritchie", "Dennis", 0952356578, 0728356157,
