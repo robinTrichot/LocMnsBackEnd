@@ -39,22 +39,17 @@ VALUES ("pc_asus", "asus1.jpg", 1, 1, "document.pdf"),
        ("ecran_fixe", "ecran.jpg", 3, 1, "document2.pdf");
 
 INSERT INTO user(password, lastname, firstname, phone, cell_Phone, mail, street_number, name_street,
-                 postal_code, city, role)
-VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui?", "Franck", 0365814397,
-        0665301317, "admin@mail.com", 12, "rue de france",
-        "1244g", "longwy", 1),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Rambo", "Jhon", 0952356578, 0728356157,
-        "rambo@mail.com", 12, "rue de france",
-        "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Boulala", "Ali", 0382834153, 0622483389,
-        "ali@mail.com", 12, "rue de france",
-        "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Benrnard", "Jojo", 0499526234,
-        062157466, "bernard@mail.com", 12,
-        "rue de france", "1244g", "longwy", 2),
-       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Titi", "Toto", 0554827572,
-        0682648876, "titi@mail.com", 1, "Rue des Roses",
-        "57000", "Metz", 1);
+                 postal_code, city, role, nomImageProfil)
+VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui", "Franck", 0365814397,
+        0665301317, "admin@mail.com", 12, "Rue de France", "54400", "Longwy", 1, "qui.jpg"),
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Ritchie", "Dennis", 0952356578, 0728356157,
+        "rambo@mail.com", 28, "Impasse des Roses", "57330", "Hettange-Grande", 2, "ritchie.jpg"),
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Lovelace", "Ada", 0382834153, 0622483389,
+        "ali@mail.com", 7, "Rue Edmond Goudchaux","57000", "Metz", 2, "lovelace.png"),
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Turing", "Alan", 0499526234,
+        062157466, "bernard@mail.com", 68, "Maida Vale", "EC2P 2E", "Londres", 2, "turing.jpg"),
+       ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Hamilton", "Margaret", 0554827572,
+        0682648876, "titi@mail.com", 1, "Rue des Roses", "57000", "Metz", 1, "hamilton.jpeg");
 
 
 INSERT INTO connection (`status`, date_connection, date_logout, id_user)
