@@ -187,7 +187,7 @@
         <profile>
             <id>prod</id>
             <properties>
-                <adresse_serveur_bdd>172.18.0.2:3306</adresse_serveur_bdd>
+                <adresse_serveur_bdd>mysql:3306</adresse_serveur_bdd>
                 <nom_bdd>loc_mns</nom_bdd>
                 <utilisateur_bdd>root</utilisateur_bdd>
                 <mot_de_passe_bdd>root</mot_de_passe_bdd>
