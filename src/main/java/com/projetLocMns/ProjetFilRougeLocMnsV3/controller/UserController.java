@@ -79,16 +79,25 @@ public class UserController {
         userDao.save(newUser);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
-// la vérification ne marche pas à refaire !!!
+
+    // la vérification ne marche pas à refaire !!!
     @PostMapping("/admin/putUsager")
     public ResponseEntity<User> putUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
 
+        // Je fais un premier test pour vérifier si l'adresse e-mail est déjà prise
         Optional<User> optional = userDao.findByMail(newUser.getMail());
-        //si c'est un update
-        if (optional.isPresent()) {
 
-            User userToUpdate = optional.get();
-            userToUpdate.setPassword(optional.get().getPassword()); //test apssword ?
+        if (optional.isPresent() && !optional.get().getId().equals(newUser.getId())) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT); // Adresse e-mail déjà utilisée dans la bdd
+        }
+
+        // Je fais une manipulation pour récuperer par l'id cette fois-ici l'utilisateur que je veux modifier
+        // car l'admin peut vouloir changer son adresse mail, je ne dois pas faire une recheche pas mail !
+        Optional<User> optionalbis = userDao.findById(newUser.getId());
+
+        if (optionalbis.isPresent()) {
+            User userToUpdate = optionalbis.get();
+            userToUpdate.setPassword(optionalbis.get().getPassword()); // récupération du mot de passe initial(ne pas le modifier)
             userToUpdate.setLastname(newUser.getLastname());
             userToUpdate.setFirstname(newUser.getFirstname());
             userToUpdate.setPhone(newUser.getPhone());
