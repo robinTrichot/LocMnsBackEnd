@@ -16,14 +16,11 @@ import java.util.Set;
 @Getter
 @Setter
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(ViewUser.class)
     private Integer id;
-
     private String password;
-
     @JsonView(ViewUser.class)
     private String lastname;
     @JsonView(ViewUser.class)
@@ -34,7 +31,6 @@ public class User {
     private int cellPhone;
     @JsonView(ViewUser.class)
     private String mail;
-
     @JsonView(ViewUser.class)
     private String nomImageProfil;
     @JsonView(ViewUser.class)
@@ -45,7 +41,6 @@ public class User {
     private String postalCode;
     @JsonView(ViewUser.class)
     private String city;
-
     @JsonView(ViewUser.class)
     @ManyToOne
     @JoinColumn(name = "role")
