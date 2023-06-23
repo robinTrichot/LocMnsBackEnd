@@ -32,5 +32,5 @@ services:
       - "33060:33060"
 
 volumes:
-  - mysql_data:
-      - external: true
+  mysql_data:
+    external: true
