@@ -18,4 +18,4 @@ sudo bash mvnw --settings /home/debian/.m2/settings.xml package -Pprod
 ##Lancer un nouveau conteneur
 #docker run -d --net backend --ip 172.18.0.4 --name=conteneur-loc-mns -p 8080:8080 -v uploaded_files:/uploads loc-mns-back-end
 
-docker compose -f docker-compose.yml up -d --build
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
