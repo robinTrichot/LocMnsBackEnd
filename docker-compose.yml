@@ -1,0 +1,28 @@
+version: '4'
+services:
+  conteneur-loc-mns:
+    image: loc-mns-back-end
+    build:
+      context: .
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    depends_on:
+      - mysql
+    ports:
+      - 8888:80
+
+  mysql:
+    image: mysql:5
+    environment:
+      - PMA_HOST=172.18.0.2
+    ports:
+      - 3306:3306
+      - 33060:33060
