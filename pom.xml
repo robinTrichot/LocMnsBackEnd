@@ -191,7 +191,7 @@
                 <nom_bdd>loc_mns</nom_bdd>
                 <utilisateur_bdd>root</utilisateur_bdd>
                 <mot_de_passe_bdd>root</mot_de_passe_bdd>
-                <ddl_auto>update</ddl_auto>
+                <ddl_auto>none</ddl_auto>
                 <nom_fichier_sql>mysql</nom_fichier_sql>
                 <initialisation_donnee_bdd>true</initialisation_donnee_bdd>
                 <mode_initialisation_donnee_bdd>always</mode_initialisation_donnee_bdd>
