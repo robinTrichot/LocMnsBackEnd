@@ -61,7 +61,6 @@ public class UserController {
         Optional<User> optional = userDao.findByMail(newUser.getMail());
 
         if (optional.isPresent()) {
-            // erreur 409 : l'etat de la ressource est déjà présente en sommes.
             return new ResponseEntity<>(newUser, HttpStatus.CONFLICT);
         }
         String passwordHache = passwordEncoder.encode(newUser.getPassword());
@@ -80,7 +79,7 @@ public class UserController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    // la vérification ne marche pas à refaire !!!
+
     @PutMapping("/admin/putUsager")
     public ResponseEntity<User> putUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
 
