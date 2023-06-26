@@ -81,7 +81,7 @@ public class UserController {
     }
 
     // la vérification ne marche pas à refaire !!!
-    @PostMapping("/admin/putUsager")
+    @PutMapping("/admin/putUsager")
     public ResponseEntity<User> putUsager(@RequestPart("usager") User newUser, @Nullable @RequestParam("fichier") MultipartFile fichier) {
 
         // Je fais un premier test pour vérifier si l'adresse e-mail est déjà prise
@@ -164,7 +164,6 @@ public class UserController {
     }
 
     @DeleteMapping("/admin/deleteUsager/{id}")
-    @JsonView(ViewUser.class)
     public ResponseEntity<User> supprimeUtilisateur(@PathVariable int id) {
 
         Optional<User> usagerToDelete = userDao.findById(id);

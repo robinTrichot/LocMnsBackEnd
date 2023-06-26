@@ -10,9 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-
 public class Hire {
-
     @JsonView(ViewHire.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +44,7 @@ public class Hire {
     @JoinColumn(name = "idUser")
     private User user;
 
+    @JsonView({ViewHire.class})
     @ManyToOne
     @JoinColumn(name = "copy")
     private Copy copy;
