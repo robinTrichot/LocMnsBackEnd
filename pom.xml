@@ -193,8 +193,8 @@
                 <mot_de_passe_bdd>root</mot_de_passe_bdd>
                 <ddl_auto>none</ddl_auto>
                 <nom_fichier_sql>mysql</nom_fichier_sql>
-                <initialisation_donnee_bdd>true</initialisation_donnee_bdd>
-                <mode_initialisation_donnee_bdd>always</mode_initialisation_donnee_bdd>
+                <initialisation_donnee_bdd>false</initialisation_donnee_bdd>
+                <mode_initialisation_donnee_bdd>never</mode_initialisation_donnee_bdd>
                 <dossier_upload>/uploads/pictures</dossier_upload>
                 <notice_upload>/uploads/notices</notice_upload>
 
