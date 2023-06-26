@@ -1,5 +1,6 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewStructure;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
@@ -36,6 +37,7 @@ public class Structure {
 
     private String city;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "belongs_user_structure",

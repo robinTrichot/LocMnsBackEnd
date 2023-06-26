@@ -45,7 +45,7 @@ VALUES ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Qui", "
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Ritchie", "Dennis", 0952356578, 0728356157,
         "rambo@mail.com", 28, "Impasse des Roses", "57330", "Hettange-Grande", 2, "ritchie.jpg"),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Lovelace", "Ada", 0382834153, 0622483389,
-        "ali@mail.com", 7, "Rue Edmond Goudchaux","57000", "Metz", 2, "lovelace.png"),
+        "ali@mail.com", 7, "Rue Edmond Goudchaux", "57000", "Metz", 2, "lovelace.png"),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Turing", "Alan", 0499526234,
         062157466, "bernard@mail.com", 68, "Maida Vale", "EC2P 2E", "Londres", 2, "turing.jpg"),
        ("$2y$10$ODv3tF1YNzlMGHueQE4UMO4jRZyMycigfA5SRRuv0VUKzkEK9WyY.", "Hamilton", "Margaret", 0554827572,
@@ -83,7 +83,8 @@ VALUES ('1993-05-20', '1993-05-20', '1993-05-20', "en cours", 1, 1, 1),
 INSERT INTO belongs_user_structure (user_id, structure_id)
 VALUES (1, 1),
        (1, 2),
-       (2, 3);
+       (2, 3),
+       (5, 3);
 
 INSERT INTO failure (date_failure, date_send_repair, date_return_repair, number_quote, price_repair,
                      description_failure)
