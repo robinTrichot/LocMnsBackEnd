@@ -1,7 +1,9 @@
 package com.projetLocMns.ProjetFilRougeLocMnsV3.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.StructureDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.UserDao;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Structure;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.User;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.services.FileService;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewUser;
@@ -19,9 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -35,6 +35,9 @@ public class UserController {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private StructureDao structureDao;
 
     @GetMapping("/user/usagers")
     @JsonView(ViewUser.class)
@@ -75,7 +78,16 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        userDao.save(newUser);
+
+        userDao.save(newUser); // Enregistrer l'utilisateur
+
+// Mettre à jour la table de liaison many-to-many
+        Set<Structure> selectedStructures = newUser.getStructures();
+        for (Structure structure : selectedStructures) {
+            structure.getUsers().add(newUser);
+            structureDao.save(structure); // Sauvegarder chaque structure mise à jour
+        }
+
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
