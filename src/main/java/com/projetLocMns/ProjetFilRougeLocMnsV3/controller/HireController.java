@@ -5,12 +5,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.CopyDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.HireDao;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.dao.UserDao;
+import com.projetLocMns.ProjetFilRougeLocMnsV3.enums.StatusHireEnum;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.model.Hire;
 import com.projetLocMns.ProjetFilRougeLocMnsV3.view.ViewHire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +30,9 @@ public class HireController {
 
     @Autowired
     CopyDao copyDao;
+
+    @Enumerated(EnumType.STRING)
+    private StatusHireEnum statusHireEnum;
 
     @PostMapping("/user/commande")
     public ResponseEntity<Hire> createHire(@RequestBody Hire hire) {
@@ -49,7 +56,7 @@ public class HireController {
         }
 
 
-        hire.setStatus("en attente"); // lorsque la location est créée, son statut est par défaut mis en "en attente" de valiation
+        hire.setStatus(statusHireEnum.PENDING.getValue()); // lorsque la location est créée, son statut est par défaut mis en "en attente" de valiation
         // par l'administrateur, celui-ci sera modifié lorsque l'administrateur décide d'accepter ou non la location.
         this.hireDao.save(hire);
         return new ResponseEntity<>(hire, HttpStatus.OK);
@@ -87,7 +94,7 @@ public class HireController {
                 hireToUpdate.setUser(hire.getUser());
 
 
-                hireToUpdate.setStatus("en cours");
+                hireToUpdate.setStatus(statusHireEnum.ON_GOING.getValue());
 
                 hireDao.save(hireToUpdate);
 

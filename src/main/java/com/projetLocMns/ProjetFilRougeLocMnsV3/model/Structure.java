@@ -41,6 +41,7 @@ public class Structure {
     @ManyToMany
     @JoinTable(
             name = "belongs_user_structure",
+            joinColumns = @JoinColumn(name = "structure_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users = new HashSet<>();
